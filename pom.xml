@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.ifremer.scoop3</groupId>
+	<artifactId>scoop3</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>Scoop3</name>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.jdk.version>1.8</project.jdk.version>
+		<fr.ifremer.scoop3.version>1.61</fr.ifremer.scoop3.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-build-plugin</artifactId>
+			<version>1.4</version>
+			<type>maven-plugin</type>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-nop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${project.jdk.version}</source>
+					<target>${project.jdk.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<aggregate>true</aggregate>
+					<show>private</show>
+					<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+					<docletArtifact>
+						<groupId>org.umlgraph</groupId>
+						<artifactId>umlgraph</artifactId>
+						<version>5.6.6</version>
+					</docletArtifact>
+				</configuration>
+			</plugin>
+			<!-- Build a JAR of sources -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.15</version>
+				<configuration>
+					<argLine>-Doracle.net.tns_admin=\\brest\tnsnames</argLine>
+				</configuration>
+			</plugin>
+			<!-- Clean project -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<!--To test... -->
+							<directory>target</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- Commons modules ... -->
+	<modules>
+		<module>scoop3-infra</module>
+		<module>scoop3-model</module>
+		<module>scoop3-core</module>
+		<module>scoop3-io</module>
+		<module>scoop3-gui</module>
+		<module>scoop3-controller</module>
+		<module>scoop3-map</module>
+		<module>scoop3-chart</module>
+		<module>scoop3-bathyClimato</module>
+	</modules>
+
+	<profiles>
+		<!-- BPC Profile ... -->
+		<profile>
+			<id>bpc</id>
+			<properties>
+				<!-- others... -->
+			</properties>
+			<modules>
+				<!-- <module>scoop3-bpc-application</module> -->
+				<module>scoop3-bpc-io</module>
+				<module>scoop3-bpc-gui</module>
+				<module>scoop3-bpc-controller</module>
+			</modules>
+			<build>
+				<plugins />
+			</build>
+		</profile>
+
+		<!-- File Profile ... -->
+		<profile>
+			<id>file</id>
+			<properties />
+			<modules>
+				<module>coriolis-scoop3-file-io</module>
+				<module>coriolis-scoop3-file-gui</module>
+				<module>coriolis-scoop3-file-controller</module>
+			</modules>
+			<build>
+				<plugins />
+			</build>
+		</profile>
+
+	</profiles>
+
+</project>

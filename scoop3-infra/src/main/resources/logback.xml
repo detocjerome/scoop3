@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property resource="custom.properties" />
+
+	<appender name="S3_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- Support multiple-JVM writing to the same log file -->
+		<prudent>true</prudent>
+		<!-- <file>${user.home}/scoop3/logs/scoop3.log</file> -->
+		<file>logs/scoop3.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<!-- <fileNamePattern>${user.home}/scoop3/logs/scoop3.%d{yyyy-MM-dd}.log</fileNamePattern> -->
+			<fileNamePattern>logs/scoop3.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %-5level [%thread] %logger{100} %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="S3_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date %-5level [%thread] %logger{100} [%file : %line] %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Perf4J appenders -->
+
+	<!-- This file appender is used to output aggregated performance statistics -->
+	<appender name="perf4jFileAppender" class="ch.qos.logback.core.FileAppender">
+		<!-- <file>${user.home}/scoop3/logs/scoop3.perf4j</file> -->
+		<file>logs/scoop3.perf4j</file>
+		<encoder>
+			<Pattern>%date %-5level [%thread] %logger{36} [%file:%line] %msg%n
+			</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>scoop3.%d{yyyy-MM-dd}.perf4j</fileNamePattern>
+		</rollingPolicy>
+	</appender>
+
+	<!-- This AsyncCoalescingStatisticsAppender groups StopWatch log messages 
+		into GroupedTimingStatistics messages which it sends on the file appender 
+		defined below -->
+	<appender name="CoalescingStatistics"
+		class="org.perf4j.logback.AsyncCoalescingStatisticsAppender">
+		<!-- The TimeSlice option is used to determine the time window for which 
+			all received StopWatch logs are aggregated to create a single GroupedTimingStatistics 
+			log. Here we set it to 10 seconds, overriding the default of 30000 ms -->
+		<param name="TimeSlice" value="30000" />
+		<appender-ref ref="perf4jFileAppender" />
+	</appender>
+
+	<!-- <appender name="metrics" class="com.codahale.metrics.logback.InstrumentedAppender"/> -->
+
+	<!-- The Perf4J logger. Note that org.perf4j.TimingLogger is the value of 
+		the org.perf4j.StopWatch.DEFAULT_LOGGER_NAME constant. Also, note that additivity 
+		is set to false, which is usually what is desired - this means that timing 
+		statements will only be sent to this logger and NOT to upstream loggers. -->
+	<logger name="org.perf4j.TimingLogger" additivity="false">
+		<level value="${perf4jlog.level}" />
+		<appender-ref ref="CoalescingStatistics" />
+	</logger>
+
+	<!-- Avoid log spam from medatlasreader -->
+	<logger name="org.apache.axis2">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.apache.axiom">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.apache.commons.httpclient">
+		<level value="WARN" />
+	</logger>
+	<logger name="httpclient.wire">
+		<level value="WARN" />
+	</logger>
+
+	<root level="${log.level}">
+		<appender-ref ref="S3_FILE" />
+		<appender-ref ref="S3_CONSOLE" />
+		<appender-ref ref="CoalescingStatistics" />
+		<!-- <appender-ref ref="metrics"/> -->
+	</root>
+
+</configuration>
