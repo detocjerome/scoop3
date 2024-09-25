@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.ifremer.scoop3</groupId>
 	<artifactId>scoop3</artifactId>
-	<version>1.0</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Scoop3</name>
 
@@ -13,7 +13,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.jdk.version>1.8</project.jdk.version>
-		<fr.ifremer.scoop3.version>1.61</fr.ifremer.scoop3.version>
+		<fr.ifremer.scoop3.version>1.0.0-SNAPSHOT</fr.ifremer.scoop3.version>
 	</properties>
 
 	<dependencies>
@@ -115,39 +115,5 @@
 		<module>scoop3-chart</module>
 		<module>scoop3-bathyClimato</module>
 	</modules>
-
-	<profiles>
-		<!-- BPC Profile ... -->
-		<profile>
-			<id>bpc</id>
-			<properties>
-				<!-- others... -->
-			</properties>
-			<modules>
-				<!-- <module>scoop3-bpc-application</module> -->
-				<module>scoop3-bpc-io</module>
-				<module>scoop3-bpc-gui</module>
-				<module>scoop3-bpc-controller</module>
-			</modules>
-			<build>
-				<plugins />
-			</build>
-		</profile>
-
-		<!-- File Profile ... -->
-		<profile>
-			<id>file</id>
-			<properties />
-			<modules>
-				<module>coriolis-scoop3-file-io</module>
-				<module>coriolis-scoop3-file-gui</module>
-				<module>coriolis-scoop3-file-controller</module>
-			</modules>
-			<build>
-				<plugins />
-			</build>
-		</profile>
-
-	</profiles>
 
 </project>
