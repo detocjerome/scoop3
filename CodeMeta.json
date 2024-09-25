@@ -1,0 +1,48 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "name": "Scoop3-Core",
+    "description": "Framework for developing applications to visualize scientific observations such as vertical profiles or time series.",
+    "version": "1.0.0-SNAPSHOT",
+    "identifier": "https://github.com/detocjerome/scoop3",
+    "codeRepository": "https://github.com/detocjerome/scoop3",
+    "programmingLanguage": "Java",
+    "runtimePlatform": "Java SE 8",
+    "softwareRequirements": "Apache Maven 3.8.8",
+    "developmentStatus": "active",
+    "license": "GPL-3.0-only",
+    "author": [
+      {
+        "@type": "Person",
+        "givenName": "Jérôme",
+        "familyName": "Detoc",
+        "email": "jerome.detoc@ifremer.fr",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Ifremer"
+        }
+      }
+    ],
+    "maintainer": {
+      "@type": "Person",
+        "givenName": "Jérôme",
+        "familyName": "Detoc",
+        "email": "jerome.detoc@ifremer.fr",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Ifremer"
+        }
+      }
+    },
+    "keywords": [
+      "java",
+      "maven",
+      "software",
+      "codemeta"
+    ],
+    "dateCreated": "2024-09-25",
+    "dateModified": "2024-09-25",
+    "issueTracker": "https://github.com/user/my-maven-java-project/issues",
+    "citation": "Detoc Jérôme (2024) Scoop3-Core. https://github.com/detocjerome/scoop3"
+  }
+  
