@@ -13,6 +13,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.jdk.version>1.8</project.jdk.version>
+		<local.repo>${user.home}/.m2/repository</local.repo>
 		<fr.ifremer.scoop3.version>1.0.0-SNAPSHOT</fr.ifremer.scoop3.version>
 	</properties>
 
@@ -107,13 +108,11 @@
 	<modules>
 		<module>scoop3-infra</module>
 		<module>scoop3-model</module>
-		<module>scoop3-core</module>
-		<module>scoop3-io</module>
-		<module>scoop3-gui</module>
-		<module>scoop3-controller</module>
-		<module>scoop3-map</module>
 		<module>scoop3-chart</module>
 		<module>scoop3-bathyClimato</module>
+		<module>scoop3-core</module>
+		<module>scoop3-io</module>
+		<module>scoop3-map</module>
 	</modules>
 
 </project>

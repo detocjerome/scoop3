@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.ifremer.scoop3</groupId>
+		<artifactId>scoop3</artifactId>
+		<version>${project.version}</version>
+	</parent>
+
+	<artifactId>scoop3-controller</artifactId>
+
+	<name>Scoop3 - Controller</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.jdk.version>1.8</project.jdk.version>
+	</properties>
+	
+
+	<dependencies>
+		<dependency>
+			<groupId>fr.ifremer.scoop3</groupId>
+			<artifactId>scoop3-io</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>fr.ifremer.scoop3</groupId>
+			<artifactId>scoop3-gui</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+           		<configuration>
+					<source>${project.jdk.version}</source>
+					<target>${project.jdk.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+           		</configuration>
+       		</plugin> 
+       	</plugins>
+	</build>
+</project>

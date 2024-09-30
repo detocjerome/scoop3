@@ -1,0 +1,48 @@
+# Maven cible les répertoires cibles
+target/
+
+# Dossiers de configuration des IDEs
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# Ignorer les fichiers de construction de MacOS et Linux
+.DS_Store
+*.swp
+
+# Logs
+*.log
+
+# Ignorer les fichiers de classe Java
+*.class
+
+# Ignorer les JARs et WARs générés
+*.jar
+*.war
+
+# Fichiers de configuration et propriétés
+*.properties
+*.env
+
+# Fichiers de tests (si générés)
+test-output/
+
+# Ignorer les fichiers de package (ZIP, TAR, etc.)
+*.zip
+*.tar.gz
+
+# Fichiers de dépendances locales qui pourraient être spécifiques à un utilisateur
+lib/
+
+# Ignorer les fichiers et répertoires de cache
+.mvn/
