@@ -4,7 +4,7 @@
     "name": "Scoop3-Core",
     "description": "Framework for developing applications to visualize scientific observations such as vertical profiles or time series.",
     "version": "1.0.0-SNAPSHOT",
-    "identifier": "https://github.com/detocjerome/scoop3",
+    "identifier": "https://doi.org/10.17882/48531",
     "codeRepository": "https://github.com/detocjerome/scoop3",
     "programmingLanguage": "Java",
     "runtimePlatform": "Java SE 8",
